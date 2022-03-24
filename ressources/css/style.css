@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+body,
+html,
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*================= INDEX ===================*/
+nav {
+  width: 100%;
+  background-color: #4d4c4c;
+  padding: 0 50px;
+  color: white;
+}
+nav ul li {
+  font-size: 1.6rem;
+}
+nav ul li a {
+  color: white;
+}
+
+.form-container {
+  height: fit-content;
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+  margin: 100px auto;
+  background-color: #b9d2ff;
+  padding: 25px;
+  border-radius: 15px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  font-family: "Poppins", sans-serif;
+}
+
+label {
+  padding: 5px;
+}
+
+input {
+  font-size: 1.2rem;
+  padding: 5px;
+}
+
+button {
+  margin-top: 25px;
+  padding: 5px;
+  height: 35px;
+  background-color: #15ac15;
+  border: none;
+  border-radius: 10px;
+}
+
+button:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 10px black);
+}
+
+.alert {
+  padding: 5px;
+  margin: 0;
+  margin-top: 15px;
+  color: white;
+  text-align: center;
+}
+.alert p {
+  margin: 0;
+}
+
+.error {
+  background-color: red;
+}
+
+.success {
+  background-color: green;
+}
+
+/*# sourceMappingURL=style.css.map */
