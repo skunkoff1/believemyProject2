@@ -58,7 +58,7 @@ button {
 
 button:hover {
   cursor: pointer;
-  transform: scale(1.05);
+  transform: scale(1.02);
   filter: drop-shadow(0 0 10px black);
 }
 
@@ -79,6 +79,24 @@ button:hover {
 
 .success {
   background-color: green;
+}
+
+.buttonDiv {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.tiny {
+  margin-top: 50px;
+}
+
+#upload {
+  display: none;
+}
+
+#output {
+  max-width: 350px;
+  max-height: 350px;
 }
 
 /*# sourceMappingURL=style.css.map */

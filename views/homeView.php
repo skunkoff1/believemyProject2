@@ -13,7 +13,7 @@
     <?php include('../components/header.php'); ?>
 
     <div class="container">
-        <h1>Bienvenue <?php if($_SESSION != null) {echo $_SESSION['pseudo']; }?></h1>
+        <h1>Bienvenue <?php if(isset($_SESSION['connect'])) {echo $_SESSION['pseudo']; }?></h1>
     </div>
 
 
