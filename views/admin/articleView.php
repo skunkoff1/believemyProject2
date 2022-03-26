@@ -29,8 +29,17 @@
                 <input type="file" name="headImg" accept="image/*" onchange="openFile(event)" />
                 <img id="output" src="">
             </div>
+            <label for="article">Contenu de l'article</label>
             <textarea id="mytextarea" name="article"></textarea>
             <input name="image" type="file" id="upload" onchange="">
+            <label for="tagSelect">Chosir la catégorie de l'article</label>
+            <select name="tagSelect">
+                <?php 
+                foreach($tagArray as $tag) {
+                    echo '<option value="'.$tag.'" >'.$tag.'</option>';
+                }
+                ?>
+            </select>
             <button type="submit" class="btn btn-outline-success">Envoyer</button>
         </form>
     </div>

@@ -55,10 +55,10 @@ if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password']) 
         exit();
     }
     
-    if(preg_match($PASSWORD_REGEX, $userPassword)==0) {
-        header('location: ../controllers/registerController.php?error=true&messageInvalidPassword=true&name='.$userName.'&mail='.$userMail);
-        exit();
-    }
+    // if(preg_match($PASSWORD_REGEX, $userPassword)==0) {
+    //     header('location: ../controllers/registerController.php?error=true&messageInvalidPassword=true&name='.$userName.'&mail='.$userMail);
+    //     exit();
+    // }
 
     if(strlen($userPassword2)<1) {
         header('location: ../controllers/registerController.php?error=true&messagePassword2=true&name='.$userName.'&mail='.$userMail);

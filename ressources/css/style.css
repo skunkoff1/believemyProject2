@@ -99,4 +99,9 @@ button:hover {
   max-height: 350px;
 }
 
+label {
+  margin-top: 15px;
+  color: blue;
+}
+
 /*# sourceMappingURL=style.css.map */

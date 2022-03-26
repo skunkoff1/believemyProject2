@@ -58,14 +58,13 @@ class Article {
     // Méthodes 
     public function recordArticle() {
         require('../../controllers/connect.php');
-            $tag = "";
 			$requete = $db->prepare('INSERT INTO articles(title, resume, head_img, content, tag) VALUES(?, ?, ?, ?, ?)');
 			$requete->execute([
 				$this->getTitle(),
 				$this->getResume(),
 				$this->getHeadImg(),
-				$this->getContent(),                
-				$this->$tag
+				$this->getContent(), 
+                $this->getTag()
 			]);
     }
 }
