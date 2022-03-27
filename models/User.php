@@ -55,7 +55,7 @@
 
 		// Méthodes
 		public function recordUser() {
-			require('../controllers/connect.php');
+			require('controllers/connect.php');
 			$requete = $db->prepare('INSERT INTO users(username, email, password, secret, salt) VALUES(?, ?, ?,?,?)');
 			$requete->execute([
 				$this->getPseudo(),

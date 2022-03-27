@@ -1,9 +1,9 @@
 <?php
 
-require('../connect.php');
-require("../sessionController.php");
-require('../../models/Article.php');
-require('../../models/Tag.php');
+require('controllers/connect.php');
+require("controllers/sessionController.php");
+require('models/Article.php');
+require('models/Tag.php');
 
 // Variables 
 $message = '';
@@ -15,7 +15,7 @@ $tag = new Tag();
 $tagArray = $tag->getTags();
 
 // Répertoire cible pour les images
-$dir_path = __DIR__ .'/../../ressources/images/';
+$dir_path = __DIR__ .'/../ressources/images/';
 
 /*================ CREATION REPERTOIRE CIBLE SI INEXISTANT ==================*/
 
@@ -185,7 +185,8 @@ if(isset($_POST['title']) && isset($_POST['article'])) {
     }*/
 
     // Création de l'objet article 
-    $article = new Article($title, $resume, $headImg, $content, $articleTag);
+    $article = new Article();
+    $article->setArticle($title, $resume, $headImg, $content, $articleTag);
     // Enregistrement en BDD
     $article->recordArticle();
     $message = "Article enregistré avec succès";
@@ -195,4 +196,4 @@ if(isset($_POST['title']) && isset($_POST['article'])) {
 
 
 
-require('../../views/admin/articleView.php');
+require('views/adminArticleView.php');

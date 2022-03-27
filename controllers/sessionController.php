@@ -5,5 +5,5 @@
 session_start();
 
 if(!isset($_SESSION['connect'])) {
-    header('location: ../index.php');
+    header('location: index.php');
 }

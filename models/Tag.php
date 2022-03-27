@@ -18,7 +18,7 @@ class Tag {
 
     // Méthodes 
     public function getTags() {
-        require('../../controllers/connect.php');
+        require('controllers/connect.php');
 			$requete = $db->prepare('SELECT tagname FROM tags');
 			$requete->execute();
       while ($data = $requete->fetch()) {

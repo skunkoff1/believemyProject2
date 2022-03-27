@@ -7,8 +7,8 @@ $salt;
 $password;
 
 //DEMARRAGE DE LA SESSION
-require('./connect.php');
-require("../models/User.php");
+require('controllers/connect.php');
+require("models/User.php");
 
 session_start();
 
@@ -19,12 +19,12 @@ if( isset($_POST['email']) && isset($_POST['password'])) {
     $userPassword = htmlspecialchars($_POST['password']);
     
     if(strlen($userMail)<1) {
-        header('location: ../views/loginView.php?error=true&messageEmail=true');
+        header('location: index.php?page=login&error=true&messageEmail=true');
         exit();
     }
 
     if(strlen($userPassword)<1) {
-        header('location: ../views/loginView.php?error=true&messagePassword=true');
+        header('location: index.php?page=login&error=true&messagePassword=true');
         exit();
     }
      // VERIFICATION SI USER EXISTE DANS BDD
@@ -36,7 +36,7 @@ if( isset($_POST['email']) && isset($_POST['password'])) {
      while ($user = $req->fetch()) {
  
          if ($user['x'] != 1) {
-             header('location: ../views/loginView.php?error=true&messageUser=true');
+             header('location: index.php?page=login&error=true&messageUser=true');
              exit();
          }
      }
@@ -48,7 +48,7 @@ if( isset($_POST['email']) && isset($_POST['password'])) {
 
     while ($user = $donnees->fetch()) {
 
-        require("../models/Security.php");
+        require("models/Security.php");
         $compare = Security::encryptPassword($user['salt'], $userPassword);
         // $compare = $user['salt'] . sha1($userPassword . "123") . "25";
 
@@ -63,13 +63,13 @@ if( isset($_POST['email']) && isset($_POST['password'])) {
             //     setcookie('auth', $user['secret'], time() + 364 * 24 * 3600, "/", null, false, true);
             // }
 
-            header('location: ./homeController.php');
+            header('location: index.php?page=adminHome');
             exit();
         } else {
-            header('location: ../views/loginView.php?error=true&messagePassword2=true');
+            header('location: index.php?page=login&error=true&messagePassword2=true');
             exit();
         }
     }     
 }
 
-require('../views/loginView.php');
+require('views/loginView.php');

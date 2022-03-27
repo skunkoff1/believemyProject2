@@ -1,7 +1,10 @@
 <?php
+
+
 $PASSWORD_REGEX = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/";
 
-require('./connect.php');
+require('controllers/connect.php');
+
 
 if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password2'])) {
     $userName = htmlspecialchars($_POST['name']);
@@ -10,7 +13,7 @@ if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password']) 
     $userPassword2 = htmlspecialchars($_POST['password2']);
 
     if(strlen($userName)<1) {
-        header('location: ../controllers/registerController.php?error=true&messageName=true');
+        header('location: index.php?page=register&error=true&messageName=true');
         exit();
     }
 
@@ -22,13 +25,13 @@ if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password']) 
     while ($result = $req->fetch()) {
 
         if ($result['x'] != 0) {
-            header('location: ../controllers/registerController.php?error=true&usedName=true&name='.$userName);
+            header('location: index.php?page=register&error=true&usedName=true&name='.$userName);
             exit();
         }
     }
 
     if(strlen($userMail)<1) {
-        header('location: ../controllers/registerController.php?error=true&messageEmail=true&name='.$userName);
+        header('location: index.php?page=register&error=true&messageEmail=true&name='.$userName);
         exit();
     }
 
@@ -40,33 +43,33 @@ if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password']) 
     while ($result = $req->fetch()) {
 
         if ($result['x'] != 0) {
-            header('location: ../controllers/registerController.php?error=true&usedEmail=true&name='.$userName.'&mail='.$userMail);
+            header('location: index.php?page=register&error=true&usedEmail=true&name='.$userName.'&mail='.$userMail);
             exit();
         }
     }    
 
     if(!filter_var($userMail, FILTER_VALIDATE_EMAIL)) {
-        header('location: ../controllers/registerController.php?error=true&messageInvalidEmail=true&name='.$userName.'&mail='.$userMail);
+        header('location: index.php?page=register&error=true&messageInvalidEmail=true&name='.$userName.'&mail='.$userMail);
         exit();
     }
 
     if(strlen($userPassword)<1) {
-        header('location: ../controllers/registerController.php?error=true&messagePassword=true&name='.$userName.'&mail='.$userMail);
+        header('location: index.php?page=register&error=true&messagePassword=true&name='.$userName.'&mail='.$userMail);
         exit();
     }
     
     // if(preg_match($PASSWORD_REGEX, $userPassword)==0) {
-    //     header('location: ../controllers/registerController.php?error=true&messageInvalidPassword=true&name='.$userName.'&mail='.$userMail);
+    //     header('location: ../index.php?page=register&error=true&messageInvalidPassword=true&name='.$userName.'&mail='.$userMail);
     //     exit();
     // }
 
     if(strlen($userPassword2)<1) {
-        header('location: ../controllers/registerController.php?error=true&messagePassword2=true&name='.$userName.'&mail='.$userMail);
+        header('location: index.php?page=register&error=true&messagePassword2=true&name='.$userName.'&mail='.$userMail);
         exit();
     }
 
     if($userPassword != $userPassword2) {
-        header('location: ../controllers/registerController.php?&error=true&messageNotEqualsPassword=true&name='.$userName.'&mail='.$userMail);
+        header('location: index.php?page=register&&error=true&messageNotEqualsPassword=true&name='.$userName.'&mail='.$userMail);
         exit();
     }  
         
@@ -80,11 +83,11 @@ if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password']) 
 
     $secret = Security::createSecret($userMail);
 
-    require("../models/User.php");
+    require("models/User.php");
     $user = new User($userName,$userMail,$password,$salt,$secret);
     $user->recordUser();
 
-    header('location: ../controllers/registerController.php?messageSuccess=true');    
+    header('location: controllers/registerController.php?messageSuccess=true');    
 }
 
-require('../views/registerView.php');
+require('views/registerView.php');

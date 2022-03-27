@@ -10,14 +10,20 @@
 </head>
 
 <body>
-    <?php include('../components/header.php'); ?>
+    <?php include('components/header.php'); ?>
 
     <div class="container">
         <h1>Bienvenue <?php if(isset($_SESSION['connect'])) {echo $_SESSION['pseudo']; }?></h1>
     </div>
+    <div class="container articles">
+        <?php
+            foreach($articleArray as $article) {
+                echo $article['title'];
+            }
+        ?>
+    </div>
 
-
-    <script src="../ressources/js/script.js"></script>
+    <script src="ressources/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
     </script>
