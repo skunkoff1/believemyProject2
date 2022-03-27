@@ -15,7 +15,7 @@ $tag = new Tag();
 $tagArray = $tag->getTags();
 
 // Répertoire cible pour les images
-$dir_path = __DIR__ .'/../ressources/images/';
+$dir_path = __DIR__ .'/../../ressources/images/';
 
 /*================ CREATION REPERTOIRE CIBLE SI INEXISTANT ==================*/
 
@@ -33,7 +33,7 @@ if(isset($_POST['title']) && isset($_POST['article'])) {
     // SI un titre et un article est reçu en post -> création des variables Titre, Resumé et Contenu
     $title = $_POST['title'];
     $content = $_POST['article'];
-    $resume = substr($content,0,255);
+    $resume = substr($content,0,241).'[...]</div>';
     $articleTag = $_POST['tagSelect'];
 
     /*===========================================================================*/
@@ -196,4 +196,4 @@ if(isset($_POST['title']) && isset($_POST['article'])) {
 
 
 
-require('views/adminArticleView.php');
+require('views/admin/adminArticleView.php');

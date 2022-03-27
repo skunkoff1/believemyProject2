@@ -79,16 +79,27 @@ class Article {
 
     // Méthodes 
     public static function getArticles() {
+        $articleArray = array();
         require('controllers/connect.php');
         $requete = $db->prepare('SELECT * FROM articles');
         $requete->execute();
         while ($data = $requete->fetch()) {
             $article = new Article();
-            $article->setFullArticle($data['id'], $data['title'], $data['resume'], $data['head_img'], $data['content'], $data['tag'], $data['creation_date']);
-            $articleArray = array();
+            $article->setFullArticle($data['id'], $data['title'], $data['resume'], $data['head_img'], $data['content'], $data['tag'], $data['creation_date']);           
             array_push($articleArray, $article);
         }
       return $articleArray;
+    }
+
+    public static function getArticleById($id) {
+        require('controllers/connect.php');
+        $requete = $db->prepare('SELECT * FROM articles WHERE id=?');
+        $requete->execute(array($id));
+        while ($data = $requete->fetch()) {
+            $article = new Article();
+            $article->setFullArticle($data['id'], $data['title'], $data['resume'], $data['head_img'], $data['content'], $data['tag'], $data['creation_date']);    
+        }
+      return $article;
     }
 
     public function recordArticle() {

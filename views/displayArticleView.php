@@ -6,21 +6,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Bienvenue sur mon blog</title>
-    <link rel="stylesheet" href="../ressources/css/style.css">
+    <link rel="stylesheet" href="ressources/css/style.css">
 </head>
 
 <body>
     <?php include('components/header.php'); ?>
-
-    <div class="container">
-        <h1>Bienvenue <?php if(isset($_SESSION['connect'])) {echo $_SESSION['pseudo']; }?></h1>
-    </div>
+    
     <div class="container articles">
-        <?php
-            foreach($articleArray as $article) {
-                echo $article['title'];
-            }
-        ?>
+        <h1><?=$article->getTitle()?></h1>
     </div>
 
     <script src="ressources/js/script.js"></script>

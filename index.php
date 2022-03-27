@@ -23,6 +23,12 @@
         else if($_GET['page'] == 'logout') {
           logout();
         }
+        else if($_GET['page'] == 'displayArticle') {
+          displayArticle();
+        }
+        else if($_GET['page'] == 'error') {
+          error();
+        }
         else {
             throw new Exception("Cette page n'existe pas ou a été supprimée.");
         }

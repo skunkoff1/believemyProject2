@@ -7,4 +7,4 @@ require('models/Article.php');
 $articleArray = Article::getArticles();
 
 
-require('views/adminHomeView.php');
+require('views/admin/adminHomeView.php');

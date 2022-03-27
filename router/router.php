@@ -5,7 +5,7 @@
   }
 
   function adminArticle() {
-    require('controllers/adminArticleController.php');
+    require('controllers/admin/adminArticleController.php');
   }
 
   function login() {
@@ -21,5 +21,13 @@
   }
 
   function adminHome() {
-    require('controllers/adminHomeController.php');
+    require('controllers/admin/adminHomeController.php');
+  }
+
+  function displayArticle() {
+    require('controllers/displayArticleController.php');
+  }
+
+  function error() {
+    require('controllers/errorController.php');
   }
