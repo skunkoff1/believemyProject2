@@ -188,6 +188,7 @@ if(isset($_POST['title']) && isset($_POST['article'])) {
     $article = new Article($title, $resume, $headImg, $content, $articleTag);
     // Enregistrement en BDD
     $article->recordArticle();
+    $message = "Article enregistré avec succès";
 
 }
 

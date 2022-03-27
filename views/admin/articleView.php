@@ -20,12 +20,12 @@
     </div>
     <div class="container">
         <?php if ($error == 0 && $message != '') { ?>
-            <div id="alert-success">
+            <div class="alert success">
                 <p><?php echo $message ?></p>
             </div>
         <?php } ?>
         <?php if ($error == 1 && $message != '') { ?>
-            <div id="alert-error">
+            <div class="alert error">
                 <p><?php echo $message ?></p>
             </div>
         <?php } ?>
