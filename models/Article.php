@@ -8,11 +8,13 @@ class Article {
     private $_date;
     private $_tag;
 
-    public function __construct($title, $resume, $headImg,$content) {
+    // Constructeur
+    public function __construct($title, $resume, $headImg,$content, $tag) {
         $this->setTitle($title);
         $this->setResume($resume);
         $this->setHeadImg($headImg);
         $this->setContent($content);
+        $this->setTag($tag);
     }    
 
     // Getters
