@@ -14,6 +14,12 @@
         else if($_GET['page'] == 'adminHome') {
           adminHome();
        }
+       else if($_GET['page'] == 'adminEditArticle') {
+            adminEditArticle();
+        }
+        else if($_GET['page'] == 'adminDeleteArticle') {
+          adminDeleteArticle();
+      }
         else if($_GET['page'] == 'login') {
           login();
         }

@@ -31,3 +31,11 @@
   function error() {
     require('controllers/errorController.php');
   }
+
+  function adminEditArticle() {
+    require('controllers/admin/editArticleController.php');
+  }
+
+  function adminDeleteArticle() {
+    require('controllers/admin/deleteArticleController.php');
+  }

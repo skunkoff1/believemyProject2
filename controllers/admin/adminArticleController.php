@@ -8,6 +8,20 @@ require('models/Tag.php');
 // Variables 
 $message = '';
 $error = '';
+$headImg = "";
+$mode = "add";
+$pageMode = "Formulaire d'ajout d'un article";
+$id=0;
+$article = null;
+if(isset($_GET['mode']) && $_GET['mode'] == 'add') {
+    $mode = "add";    
+} else if(isset($_GET['mode']) && $_GET['mode'] == 'edit') {
+    $mode = "edit";
+    $id = $_GET['id'];
+    $article = Article::getArticleById($_GET['id']);    
+    $pageMode = "Formulaire de modification d'un article";
+} 
+
 
 // Récupération des tags pour les articles
 $tagArray= [];
@@ -29,11 +43,14 @@ if (!is_dir($dir_path)) {
 /*============ GESTION DE LA SAUVEGARDE DE L'ARTICLE EN BDD =================*/
 /*===========================================================================*/
 
-if(isset($_POST['title']) && isset($_POST['article'])) {
+if(!empty($_POST['title']) && !empty($_POST['article'])) {
     // SI un titre et un article est reçu en post -> création des variables Titre, Resumé et Contenu
     $title = $_POST['title'];
     $content = $_POST['article'];
-    $resume = substr($content,0,241).'[...]</div>';
+    $resume = substr($content,0,241).'[...]';
+    if(strpos($resume, "<div>") !== false) {
+        $resume = $resume.'</div>';
+    }    
     $articleTag = $_POST['tagSelect'];
 
     /*===========================================================================*/
@@ -41,7 +58,15 @@ if(isset($_POST['title']) && isset($_POST['article'])) {
     /*===========================================================================*/
 
     // Si une image d'illustration est postée
-    if(isset($_FILES['headImg'])) {
+    if(!empty($_FILES['headImg'])) {
+        if($_FILES['headImg']['size'] == 0 && $mode != "edit") {
+            $error = 1;
+            $message = 'Veuillez choisir une image';
+            require('views/admin/adminArticleView.php');
+            exit();
+        } else if ($_FILES['headImg']['size'] == 0 && $mode == "edit") {
+            $headImg = $article->getHeadImg();
+        }
         if ($_FILES['headImg']['size'] <= 10485760) {
     
              // Parcours du tableau d'erreurs
@@ -65,10 +90,7 @@ if(isset($_POST['title']) && isset($_POST['article'])) {
             $error = 1;
             $message = 'image trop volumineuse';
         }   
-    } else {
-        $headImg = "";
-    }
-    
+    }     
     // Gestion des cas d'erreurs pour l'image d'illustration 
     
     if (isset($_FILES['headImg']) && $_FILES['headImg']['error'] != 0) {
@@ -186,11 +208,21 @@ if(isset($_POST['title']) && isset($_POST['article'])) {
 
     // Création de l'objet article 
     $article = new Article();
-    $article->setArticle($title, $resume, $headImg, $content, $articleTag);
-    // Enregistrement en BDD
-    $article->recordArticle();
+    if($mode =="add") {
+        $article->setArticle($title, $resume, $headImg, $content, $articleTag);
+        // Enregistrement en BDD
+        $article->recordArticle();
+    }
+    else if($mode =="edit") {
+        $article->setArticleWithId($id, $title, $resume, $headImg, $content, $articleTag);
+        $article->updateArticle();
+    } 
+    $error = 0;
     $message = "Article enregistré avec succès";
 
+} else {
+    $error = 1;
+    $message = 'Veillez mettre un titre et un contenu';
 }
 
 

@@ -20,6 +20,15 @@ class Article {
         $this->setContent($content);
         $this->setTag($tag);
     }   
+
+    public function setArticleWithId($id, $title, $resume, $headImg, $content, $tag) {
+        $this->setId($id);
+        $this->setTitle($title);
+        $this->setResume($resume);
+        $this->setHeadImg($headImg);
+        $this->setContent($content);
+        $this->setTag($tag);
+    } 
     
     public function setFullArticle($id, $title, $resume, $headImg, $content, $tag, $date) {
         $this->setId($id);
@@ -100,6 +109,25 @@ class Article {
             $article->setFullArticle($data['id'], $data['title'], $data['resume'], $data['head_img'], $data['content'], $data['tag'], $data['creation_date']);    
         }
       return $article;
+    }
+
+    public function updateArticle() {
+        require('controllers/connect.php');
+			$requete = $db->prepare('UPDATE articles SET title= ?, resume =? , head_img = ?, content = ?, tag = ? WHERE id=?');
+			$requete->execute([
+				$this->getTitle(),
+				$this->getResume(),
+				$this->getHeadImg(),
+				$this->getContent(), 
+                $this->getTag(),
+                $this->getId()
+			]);
+    }
+
+    public function removeArticle($id) {
+        require('controllers/connect.php');
+			$requete = $db->prepare('DELETE FROM articles WHERE id=?');
+			$requete->execute(array($id));
     }
 
     public function recordArticle() {
