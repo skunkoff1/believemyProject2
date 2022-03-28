@@ -1,0 +1,22 @@
+{
+  "name": "believemyproject2",
+  "version": "1.0.0",
+  "description": "A blog/portfolio in PHP. MVC architecture. Admin for article and project management",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skunkoff1/believemyProject2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skunkoff1/believemyProject2/issues"
+  },
+  "homepage": "https://github.com/skunkoff1/believemyProject2#readme",
+  "dependencies": {
+    "bootstrap": "^5.1.3"
+  }
+}

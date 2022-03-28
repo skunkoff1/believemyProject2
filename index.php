@@ -1,6 +1,7 @@
 <?php
 
   require('router/router.php');
+  
 
   try {
     if(isset($_GET['page'])) {

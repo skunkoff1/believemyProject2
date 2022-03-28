@@ -1,2 +1,4 @@
 .htaccess
 /models/Security.php
+/node_modules
+

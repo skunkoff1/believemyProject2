@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+$primary:#1F7A8C;
+$body-bg: darkgray;
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
 body,
 html,
 * {
@@ -104,6 +107,6 @@ button:hover {
 }
 
 label {
-    margin-top:15px;
+    margin-top: 15px;
     color: blue;
 }
