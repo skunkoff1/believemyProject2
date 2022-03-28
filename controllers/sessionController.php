@@ -4,6 +4,6 @@
 
 session_start();
 
-if(!isset($_SESSION['connect'])) {
-    header('location: index.php');
+if(!isset($_SESSION['connect']) && $_GET['page'] != "accueil") {
+    header('location: index.php?page=accueil');
 }

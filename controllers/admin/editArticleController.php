@@ -1,10 +1,10 @@
 <?php
 
-require('controllers/connect.php');
 require("controllers/sessionController.php");
+require('controllers/connect.php');
 require('models/Article.php');
 
-$articleArray = Article::getArticles();
+$articleArray = Article::getArticles("");
 
 
 require('views/admin/editArticleView.php');

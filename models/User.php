@@ -67,7 +67,7 @@
 		}
 
 		public function createSession() {
-			$_SESSION['connect'] = true;
+			$_SESSION['connect'] = 1;
 			$_SESSION['pseudo']  = $this->getPseudo();
 			$_SESSION['email']   = $this->getEmail();
 		}

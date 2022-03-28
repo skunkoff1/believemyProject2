@@ -1,17 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
-$primary:#1F7A8C;
+// sass -w ressources/sass:ressources/css -s compressed
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+$primary: #1f7a8c;
 $body-bg: darkgray;
-@import '../../node_modules/bootstrap/scss/bootstrap.scss';
-body,
-html,
-* {
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+html {
+    height: 100%;
+    
+}
+body {
+    position: relative;
+    min-height: 100%;     
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+}
+* {
+    box-sizing: border-box;  
 }
 
+section {
+    height: fit-content;
+    padding-bottom: 100px;
+}
 
-/*================= INDEX ===================*/
+/*================= NAVBAR ===================*/
 
 nav {
     width: 100%;
@@ -28,6 +40,12 @@ nav {
     }
 }
 
+.logBtn {
+    margin-bottom: 15px;
+}
+
+/*============= FORMULAIRE LOGIN / REGISTER ============*/
+
 .form-container {
     height: fit-content;
     width: 30vw;
@@ -42,7 +60,7 @@ nav {
 form {
     display: flex;
     flex-direction: column;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 label {
@@ -93,6 +111,8 @@ button:hover {
     justify-content: space-evenly;
 }
 
+/*========== FORMULAIRE AJOUT / EDTION ARTICLES ============*/
+
 .tiny {
     margin-top: 50px;
 }
@@ -109,4 +129,44 @@ button:hover {
 label {
     margin-top: 15px;
     color: blue;
+}
+
+/*============= ARTICLES CARDS ====================*/
+@at-root .articles {
+    margin-top: 20px;
+}
+
+.card {
+    margin: 20px;
+    width: 24rem;
+    min-width: 24rem;
+    border-radius: 15px;
+    overflow-y: hidden;
+    filter: drop-shadow(10px 10px 10px black);
+    transition: 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    filter: drop-shadow(10px 10px 20px black);
+}
+
+.card-image {
+    margin: 10px;
+    max-height: 250px;
+}
+
+/*=============== FOOTER =================*/
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-top: 50px;
+    background-color: rgb(77, 76, 76);
+    height: 70px;
+    p {
+        color: white;
+        padding: 5px 20px;
+    }
 }

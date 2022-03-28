@@ -87,11 +87,16 @@ class Article {
     }
 
     // Méthodes 
-    public static function getArticles() {
+    public static function getArticles($mode) {
         $articleArray = array();
         require('controllers/connect.php');
-        $requete = $db->prepare('SELECT * FROM articles');
-        $requete->execute();
+        if($mode == "home") {
+            $requete = $db->prepare('SELECT * FROM articles LIMIT 3');
+            $requete->execute();
+        } else {
+            $requete = $db->prepare('SELECT * FROM articles');
+            $requete->execute();
+        }        
         while ($data = $requete->fetch()) {
             $article = new Article();
             $article->setFullArticle($data['id'], $data['title'], $data['resume'], $data['head_img'], $data['content'], $data['tag'], $data['creation_date']);           

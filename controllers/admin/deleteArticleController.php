@@ -1,7 +1,7 @@
 <?php
 
-require('controllers/connect.php');
 require("controllers/sessionController.php");
+require('controllers/connect.php');
 require('models/Article.php');
 
 $mode = "";
@@ -14,7 +14,7 @@ if(isset($_GET['mode']) && $_GET['mode'] == "confirmDelete") {
     $article->removeArticle($id);
     header("location: index.php?page=adminDeleteArticle");       
 }else {
-    $articleArray = Article::getArticles();
+    $articleArray = Article::getArticles("");
 }
 
 

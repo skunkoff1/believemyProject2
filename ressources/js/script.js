@@ -48,3 +48,7 @@ if (deleteArticleBtn != null) {
         window.location.href = "index.php?page=adminDeleteArticle";
     })
 }
+
+let footerText = document.getElementById('copyright');
+let date = new Date();
+footerText.innerHTML = "&copy; Didrich Damien aka Skunkoff " + date.getUTCFullYear();
