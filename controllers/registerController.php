@@ -75,7 +75,7 @@ if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password']) 
         
     //SI OK, CHIFFRAGE DU MOT DE PASSE
 
-    require("../models/Security.php");
+    require("models/Security.php");
     $salt = Security::createSalt($userMail);
     $password = Security::encryptPassword($salt,$userPassword);
 

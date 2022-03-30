@@ -101,7 +101,7 @@ class Article {
         $articleArray = array();
         require('controllers/connect.php');
         if($mode == "home") {
-            $requete = $db->prepare('SELECT * FROM articles LIMIT 3');
+            $requete = $db->prepare('SELECT * FROM articles LIMIT 6');
             $requete->execute();
         } else {
             $requete = $db->prepare('SELECT * FROM articles');

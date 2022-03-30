@@ -18,7 +18,7 @@
             <?php } ?></h1>
     </header>
     <section>
-        <div class="container-sm d-flex articles">
+        <div class="container-sm d-flex flex-wrap articles">
             <?php
             foreach ($articleArray as $article) { ?>
             <div class="card">
