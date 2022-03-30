@@ -25,7 +25,7 @@
 
     <section>
         <div class="container-sm text-center">
-            <h1 class="section-title">Articles du blog</h1>
+            <h1 class="section-title">Les 6 derniers articles du blog</h1>
         </div>
         <div class="container-sm d-flex flex-wrap articles">
 
@@ -33,13 +33,15 @@
             foreach ($articleArray as $article) { ?>
             <article class="card border-primary">
                 <img class="card-image" src="ressources/images/<?= $article->getHeadImg() ?>">
-                <div class="card-body">
+                <div class="card-body d-flex flex-column justify-content-between">
                     <h1 class="card-title"><?= $article->getTitle() ?></h1>
                     <p class="card-text"><?= $article->getResume() ?></p>
+                    <p class="tag border border-2 rounded-1 border-warning"><?=$article->getTag()?></p>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer d-flex justify-content-around align-items-baseline">
                     <a href="index.php?page=displayArticle&id=<?= $article->getId() ?>" class="btn btn-primary">Lire
                         l'article</a>
+                    <p class="border border-primary border-2 rounded-1 author">Auteur : <?=$article->getUser()?></p>
                 </div>
             </article>
             <?php } ?>
