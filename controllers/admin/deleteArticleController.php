@@ -14,7 +14,7 @@ if(isset($_GET['mode']) && $_GET['mode'] == "confirmDelete") {
     $article->removeArticle($id);
     header("location: index.php?page=adminDeleteArticle");       
 }else {
-    $articleArray = Article::getArticles("");
+    $articleArray = Article::getArticlesByUser($_SESSION['pseudo']);
 }
 
 

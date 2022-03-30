@@ -22,6 +22,8 @@ if(isset($_GET['mode']) && $_GET['mode'] == 'add') {
     $pageMode = "Formulaire de modification d'un article";
 } 
 
+//Récupération du user en session
+$user = $_SESSION['pseudo'];
 
 // Récupération des tags pour les articles
 $tagArray= [];
@@ -209,12 +211,12 @@ if(!empty($_POST['title']) && !empty($_POST['article'])) {
     // Création de l'objet article 
     $article = new Article();
     if($mode =="add") {
-        $article->setArticle($title, $resume, $headImg, $content, $articleTag);
+        $article->setArticle($title, $resume, $headImg, $content, $articleTag, $user);
         // Enregistrement en BDD
         $article->recordArticle();
     }
     else if($mode =="edit") {
-        $article->setArticleWithId($id, $title, $resume, $headImg, $content, $articleTag);
+        $article->setArticleWithId($id, $title, $resume, $headImg, $content, $articleTag, $user);
         $article->updateArticle();
     } 
     $error = 0;

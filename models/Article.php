@@ -7,36 +7,40 @@ class Article {
     private $_headImg;
     private $_content;
     private $_tag;
+    private $_user;
     private $_date;
 
     // Constructeur
     public function __construct() {
     }    
 
-    public function setArticle($title, $resume, $headImg,$content, $tag) {
+    public function setArticle($title, $resume, $headImg,$content, $tag, $user) {
         $this->setTitle($title);
         $this->setResume($resume);
         $this->setHeadImg($headImg);
         $this->setContent($content);
         $this->setTag($tag);
+        $this->setUser($user);
     }   
 
-    public function setArticleWithId($id, $title, $resume, $headImg, $content, $tag) {
+    public function setArticleWithId($id, $title, $resume, $headImg, $content, $tag, $user) {
         $this->setId($id);
         $this->setTitle($title);
         $this->setResume($resume);
         $this->setHeadImg($headImg);
         $this->setContent($content);
         $this->setTag($tag);
+        $this->setUser($user);
     } 
     
-    public function setFullArticle($id, $title, $resume, $headImg, $content, $tag, $date) {
+    public function setFullArticle($id, $title, $resume, $headImg, $content, $tag, $user, $date) {
         $this->setId($id);
         $this->setTitle($title);
         $this->setResume($resume);
         $this->setHeadImg($headImg);
         $this->setContent($content);
         $this->setTag($tag);
+        $this->setUser($user);
         $this->setDate($date);
     }   
 
@@ -58,6 +62,9 @@ class Article {
     }
     public function getTag() {
         return $this->_tag;        
+    }
+    public function getUser() {
+        return $this->_user;        
     }
     public function getDate() {
         return $this->_date;
@@ -82,6 +89,9 @@ class Article {
     public function setTag($tag) {
         $this->_tag = $tag;
     }
+    public function setUser($user) {
+        $this->_user = $user;
+    }
     public function setDate($date) {
         $this->_date = $date;
     }
@@ -99,7 +109,7 @@ class Article {
         }        
         while ($data = $requete->fetch()) {
             $article = new Article();
-            $article->setFullArticle($data['id'], $data['title'], $data['resume'], $data['head_img'], $data['content'], $data['tag'], $data['creation_date']);           
+            $article->setFullArticle($data['id'], $data['title'], $data['resume'], $data['head_img'], $data['content'], $data['tag'],$data['user'], $data['creation_date']);           
             array_push($articleArray, $article);
         }
       return $articleArray;
@@ -111,9 +121,22 @@ class Article {
         $requete->execute(array($id));
         while ($data = $requete->fetch()) {
             $article = new Article();
-            $article->setFullArticle($data['id'], $data['title'], $data['resume'], $data['head_img'], $data['content'], $data['tag'], $data['creation_date']);    
+            $article->setFullArticle($data['id'], $data['title'], $data['resume'], $data['head_img'], $data['content'], $data['tag'], $data['user'], $data['creation_date']);    
         }
       return $article;
+    }
+
+    public static function getArticlesByUser($user) {
+        require('controllers/connect.php');
+        $articleArray = array();
+        $requete = $db->prepare('SELECT * FROM articles WHERE user=?');
+        $requete->execute(array($user));
+        while ($data = $requete->fetch()) {
+            $article = new Article();
+            $article->setFullArticle($data['id'], $data['title'], $data['resume'], $data['head_img'], $data['content'], $data['tag'],$data['user'], $data['creation_date']);    
+            array_push($articleArray, $article);
+        }
+      return $articleArray;
     }
 
     public function updateArticle() {
@@ -137,13 +160,14 @@ class Article {
 
     public function recordArticle() {
         require('controllers/connect.php');
-			$requete = $db->prepare('INSERT INTO articles(title, resume, head_img, content, tag) VALUES(?, ?, ?, ?, ?)');
+			$requete = $db->prepare('INSERT INTO articles(title, resume, head_img, content, tag, user) VALUES(?, ?, ?, ?, ?, ?)');
 			$requete->execute([
 				$this->getTitle(),
 				$this->getResume(),
 				$this->getHeadImg(),
 				$this->getContent(), 
-                $this->getTag()
+                $this->getTag(),
+                $this->getUser()
 			]);
     }
 }
