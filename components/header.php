@@ -9,7 +9,7 @@
         <?php } ?>
 
         <?php if (isset($_SESSION['connect'])) { ?>
-        <li><a href="#" class="nav-link px-12 link-light">Gestion des Projets</a></li>
+        <li><a href="index.php?page=adminProject" class="nav-link px-12 link-light">Gestion des Projets</a></li>
         <?php } else { ?>
         <li><a href="#" class="nav-link px-12 link-light">Projets</a></li>
         <?php } ?>

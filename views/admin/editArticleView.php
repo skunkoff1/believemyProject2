@@ -15,10 +15,15 @@
 <body>
     <?php include('components/header.php'); ?>
 
-    <header class="container buttonDiv">
-        <button type="button" class="btn btn-primary" id="addArticle">Ajouter un article</button>
-        <button type="button" class="btn btn-primary" id="modifyArticle">Modifier un article</button>
-        <button type="button" class="btn btn-primary" id="deleteArticle">Supprimer un article</button>
+    <header class="container-sm">
+        <div class="header-title">
+            <h2>Bienvenue dans la section de gestion des articles</h2>
+        </div>
+        <div class="buttonDiv">
+            <button type="button" class="btn btn-primary" id="addArticle">Ajouter un article</button>
+            <button type="button" class="btn btn-primary" id="modifyArticle">Modifier un article</button>
+            <button type="button" class="btn btn-primary" id="deleteArticle">Supprimer un article</button>
+        </div>
     </header>
     <div class="container-sm text-center">
         <h1 class="title">Voici vos articles <?php if (isset($_SESSION['connect'])) { ?>
