@@ -69,25 +69,24 @@ if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password']) 
     }
 
     if($userPassword != $userPassword2) {
-        header('location: index.php?page=register&&error=true&messageNotEqualsPassword=true&name='.$userName.'&mail='.$userMail);
+        header('location: index.php?page=register&error=true&messageNotEqualsPassword=true&name='.$userName.'&mail='.$userMail);
         exit();
     }  
         
     //SI OK, CHIFFRAGE DU MOT DE PASSE
 
     require("models/Security.php");
-    $salt = Security::createSalt($userMail);
-    $password = Security::encryptPassword($salt,$userPassword);
+    $password = Security::encryptPassword($userPassword);
 
     // SI OK, CREATION DU SECRET (correspond à l'id du cookie)
 
     $secret = Security::createSecret($userMail);
 
     require("models/User.php");
-    $user = new User($userName,$userMail,$password,$salt,$secret);
+    $user = new User($userName,$userMail,$password,$secret);
     $user->recordUser();
 
-    header('location: controllers/registerController.php?messageSuccess=true');    
+    header('location: index.php?page=register&messageSuccess=true');    
 }
 
 require('views/registerView.php');

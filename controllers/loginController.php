@@ -3,7 +3,6 @@
 $userName;
 $userMail;
 $secret;
-$salt;
 $password;
 
 //DEMARRAGE DE LA SESSION
@@ -43,18 +42,16 @@ if( isset($_POST['email']) && isset($_POST['password'])) {
 
       //VERIFICATION CORRESPONDANCE MDP ET EMAIL USER
 
-    $donnees = $db->prepare('SELECT email, username, secret, password, salt FROM users WHERE email = ? OR username = ?');
+    $donnees = $db->prepare('SELECT email, username, secret, password FROM users WHERE email = ? OR username = ?');
     $donnees->execute(array($userMail, $userMail));
 
     while ($user = $donnees->fetch()) {
 
-        require("models/Security.php");
-        $compare = Security::encryptPassword($user['salt'], $userPassword);
-        // $compare = $user['salt'] . sha1($userPassword . "123") . "25";
+        require("models/Security.php"); 
 
-        if ($compare == $user['password']) {
+        if (password_verify($userPassword,$user['password'])) {
 
-            $user = new User($user['username'], $user['email'], $user['password'], $user['salt'], $secret['secret']);
+            $user = new User($user['username'], $user['email'], $user['password'], $secret['secret']);
 
             $user->createSession();
 

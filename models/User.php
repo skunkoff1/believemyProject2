@@ -9,14 +9,11 @@
         private $_salt;
 
 		// Constructeur
-		public function __construct($pseudo, $email, $password, $salt, $secret) {
-
+		public function __construct($pseudo, $email, $password,  $secret) {
 			$this->setPseudo($pseudo);
 			$this->setEmail($email);
 			$this->setPassword($password);
 			$this->setSecret($secret);
-			$this->setSalt($salt);
-
 		}
 
 		// Getters
@@ -32,9 +29,6 @@
 		public function getSecret() {
 			return $this->_secret;
 		}
-		public function getSalt() {
-			return $this->_salt;
-		}
 
 		// Setters
 		public function setPseudo($pseudo) {
@@ -49,20 +43,16 @@
 		public function setSecret($secret) {
 			$this->_secret = $secret;
 		}
-		public function setSalt($salt) {
-			$this->_salt = $salt;
-		}
 
 		// Méthodes
 		public function recordUser() {
 			require('controllers/connect.php');
-			$requete = $db->prepare('INSERT INTO users(username, email, password, secret, salt) VALUES(?, ?, ?,?,?)');
+			$requete = $db->prepare('INSERT INTO users(username, email, password, secret) VALUES(?, ?, ?, ?)');
 			$requete->execute([
 				$this->getPseudo(),
 				$this->getEmail(),
 				$this->getPassword(),
-				$this->getSecret(),
-				$this->getSalt()
+				$this->getSecret()
 			]);
 		}
 
