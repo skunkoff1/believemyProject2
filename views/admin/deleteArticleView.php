@@ -27,7 +27,7 @@
     </header>
     <div class="container-sm text-center">
         <h1 class="title">Voici vos articles <?php if (isset($_SESSION['connect'])) { ?>
-            <?=$_SESSION['pseudo']?>
+            <?= $_SESSION['pseudo'] ?>
             <?php } ?></h1>
     </div>
     <section>
@@ -41,7 +41,7 @@
                     <p class="card-text"><?= $article->getResume() ?></p>
                 </div>
                 <div class="card-footer">
-                    <a href="index.php?page=adminDeleteArticle&mode=delet&id=<?= $article->getId() ?>"
+                    <a href="index.php?page=adminDeleteArticle&mode=delete&id=<?= $article->getId() ?>"
                         class="btn btn-danger">Confirmer la suppression</a>
                 </div>
             </div>

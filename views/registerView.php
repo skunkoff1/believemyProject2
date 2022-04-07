@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <?php include('components/header.php'); ?>
+    <?php include 'components/header.php'; ?>
     <section>
         <div class="form-container">
             <h2>Formulaire d'enregistrement</h2>
@@ -36,7 +36,10 @@
             </div>
             <?php } ?>
 
-            <?php if (isset($_GET['error']) && isset($_GET['messageEmail'])) { ?>
+            <?php if (
+                isset($_GET['error']) &&
+                isset($_GET['messageEmail'])
+            ) { ?>
             <div class="alert error">
                 <p>Veuillez renseigner votre email</p>
             </div>
@@ -54,31 +57,46 @@
             </div>
             <?php } ?>
 
-            <?php if (isset($_GET['error']) && isset($_GET['messageInvalidEmail'])) { ?>
+            <?php if (
+                isset($_GET['error']) &&
+                isset($_GET['messageInvalidEmail'])
+            ) { ?>
             <div class="alert error">
                 <p>L'email est invalide</p>
             </div>
             <?php } ?>
 
-            <?php if (isset($_GET['error']) && isset($_GET['messagePassword'])) { ?>
+            <?php if (
+                isset($_GET['error']) &&
+                isset($_GET['messagePassword'])
+            ) { ?>
             <div class="alert error">
                 <p>Veuillez renseigner votre mot de passe</p>
             </div>
             <?php } ?>
 
-            <?php if (isset($_GET['error']) && isset($_GET['messageInvalidPassword'])) { ?>
+            <?php if (
+                isset($_GET['error']) &&
+                isset($_GET['messageInvalidPassword'])
+            ) { ?>
             <div class="alert error">
                 <p>Le mot de passe doit contenir au moins 8 caractères, dont au moins une majuscule et un chiffre</p>
             </div>
             <?php } ?>
 
-            <?php if (isset($_GET['error']) && isset($_GET['messagePassword2'])) { ?>
+            <?php if (
+                isset($_GET['error']) &&
+                isset($_GET['messagePassword2'])
+            ) { ?>
             <div class="alert error">
                 <p>Veuillez confirmer votre mot de passe</p>
             </div>
             <?php } ?>
 
-            <?php if (isset($_GET['error']) && isset($_GET['messageNotEqualsPassword'])) { ?>
+            <?php if (
+                isset($_GET['error']) &&
+                isset($_GET['messageNotEqualsPassword'])
+            ) { ?>
             <div class="alert error">
                 <p>Les mots de passe sont différents</p>
             </div>
@@ -95,7 +113,7 @@
         </div>
     </section>
 
-    <?php include('components/footer.php'); ?>
+    <?php include 'components/footer.php'; ?>
 
     <script src="ressources/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"

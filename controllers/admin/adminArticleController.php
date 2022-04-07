@@ -11,27 +11,27 @@ $error = '';
 $headImg = "";
 $mode = "add";
 $pageMode = "Formulaire d'ajout d'un article";
-$id=0;
+$id = 0;
 $article = null;
-if(isset($_GET['mode']) && $_GET['mode'] == 'add') {
-    $mode = "add";    
-} else if(isset($_GET['mode']) && $_GET['mode'] == 'edit') {
+if (isset($_GET['mode']) && $_GET['mode'] == 'add') {
+    $mode = "add";
+} else if (isset($_GET['mode']) && $_GET['mode'] == 'edit') {
     $mode = "edit";
     $id = $_GET['id'];
-    $article = Article::getArticleById($_GET['id']);    
+    $article = Article::getArticleById($_GET['id']);
     $pageMode = "Formulaire de modification d'un article";
-} 
+}
 
 //Récupération du user en session
 $user = $_SESSION['pseudo'];
 
 // Récupération des tags pour les articles
-$tagArray= [];
+$tagArray = [];
 $tag = new Tag();
 $tagArray = $tag->getTags();
 
 // Répertoire cible pour les images
-$dir_path = __DIR__ .'/../../ressources/images/';
+$dir_path = __DIR__ . '/../../ressources/images/';
 
 /*================ CREATION REPERTOIRE CIBLE SI INEXISTANT ==================*/
 
@@ -45,23 +45,23 @@ if (!is_dir($dir_path)) {
 /*============ GESTION DE LA SAUVEGARDE DE L'ARTICLE EN BDD =================*/
 /*===========================================================================*/
 
-if(!empty($_POST['title']) && !empty($_POST['article'])) {
-    // SI un titre et un article est reçu en post -> création des variables Titre, Resumé et Contenu
+if (!empty($_POST['title']) && !empty($_POST['article'])) {
+    // SI un titre et un article sont reçus en post -> création des variables Titre, Resumé et Contenu
     $title = $_POST['title'];
     $content = $_POST['article'];
-    $resume = substr($content,0,241).'[...]';
-    if(strpos($resume, "<div>") !== false) {
-        $resume = $resume.'</div>';
-    }    
+    $resume = substr($content, 0, 241) . '[...]';
+    if (strpos($resume, "<div>") !== false) {
+        $resume = $resume . '</div>';
+    }
     $articleTag = $_POST['tagSelect'];
 
     /*===========================================================================*/
-    /*======== GESTION DE L'UPLOAD D'IMAGE D'ILLUSTRATION DE L'ARTICLE ==========*/ 
+    /*======== GESTION DE L'UPLOAD D'IMAGE D'ILLUSTRATION DE L'ARTICLE ==========*/
     /*===========================================================================*/
 
     // Si une image d'illustration est postée
-    if(!empty($_FILES['headImg'])) {
-        if($_FILES['headImg']['size'] == 0 && $mode != "edit") {
+    if (!empty($_FILES['headImg'])) {
+        if ($_FILES['headImg']['size'] == 0 && $mode != "edit") {
             $error = 1;
             $message = 'Veuillez choisir une image';
             require('views/admin/adminArticleView.php');
@@ -70,16 +70,16 @@ if(!empty($_POST['title']) && !empty($_POST['article'])) {
             $headImg = $article->getHeadImg();
         }
         if ($_FILES['headImg']['size'] <= 10485760) {
-    
-             // Parcours du tableau d'erreurs
-             if (isset($_FILES['headImg']['error']) && UPLOAD_ERR_OK === $_FILES['headImg']['error']) {   
+
+            // Parcours du tableau d'erreurs
+            if (isset($_FILES['headImg']['error']) && UPLOAD_ERR_OK === $_FILES['headImg']['error']) {
                 // Recuperation de l'extension du fichier
                 $extension  = pathinfo($_FILES['headImg']['name'], PATHINFO_EXTENSION);
                 $extension = strtolower($extension);
                 $extensionArray = array('png', 'gif', 'jpg', 'jpeg');
                 if (in_array($extension, $extensionArray)) {
-                    $headImg = time().$_FILES['headImg']['name'];
-                    move_uploaded_file($_FILES['headImg']['tmp_name'], $dir_path.$headImg);
+                    $headImg = time() . $_FILES['headImg']['name'];
+                    move_uploaded_file($_FILES['headImg']['tmp_name'], $dir_path . $headImg);
                 } else {
                     $error = 1;
                     $message = 'Vérifier l\'extension de votre image (extension autorisée : .png, .gif, .jpg, .jpeg)';
@@ -91,137 +91,61 @@ if(!empty($_POST['title']) && !empty($_POST['article'])) {
         } else {
             $error = 1;
             $message = 'image trop volumineuse';
-        }   
-    }     
+        }
+    }
     // Gestion des cas d'erreurs pour l'image d'illustration 
-    
+
     if (isset($_FILES['headImg']) && $_FILES['headImg']['error'] != 0) {
-    
+
         switch ($_FILES['headImg']['error']) {
             case 1:
                 $error = 1;
                 $message = 'erreur lors de l\'envoi : fichier trop volumineux pour le serveur.';
                 break;
-    
+
             case 2:
                 $error = 1;
                 $message = 'erreur lors de l\'envoi : fichier trop volumineux pour le site.';
                 break;
-    
+
             case 3:
                 $error = 1;
                 $message = 'erreur lors de l\'envoi : fichier partiellement téléchargé<br /> Essayez à nouveau.';
                 break;
-    
+
             case 4:
                 $error = 1;
                 $message = 'erreur lors de l\'envoi : Aucun fichier détecté pour l\image d\'illustration.';
                 break;
-    
-            case 6:
-                $error = 1;
-                $message = 'erreur lors de l\'envoi : un dossier temporaire est manquant<br />Contactez nous !';
-                break;
-    
-            case 7:
-                $error = 1;
-                $message = 'erreur lors de l\'envoi : Echec lors de l\'écriture<br />Essayez à nouveau.';
-                break;
-    
-            case 8:
-                $error = 1;
-                $message = 'erreur lors de l\'envoi : erreur interne.';
-                break;
-        }
-    }
-    
-    /*===========================================================================*/
-    /*========== GESTION DE L'IMAGE DANS L'ARTICLE SI EXISTANTE =================*/
-    /*===========================================================================*/
-    
-    // Si une image est insérée dans l'article
-    /*if(isset($_FILES['image'])) {
-        if ($_FILES['image']['size'] <= 10485760) {
-    
-            // Parcours du tableau d'erreurs
-            if (isset($_FILES['image']['error']) && UPLOAD_ERR_OK === $_FILES['headImg']['error']) {   
-               // Recuperation de l'extension du fichier
-               $extension  = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
-               $extension = strtolower($extension);
-               $extensionArray = array('png', 'gif', 'jpg', 'jpeg');
-               if (in_array($extension, $extensionArray)) {
-                   $headImg = $_FILES['image']['name'];
-                   move_uploaded_file($_FILES['image']['tmp_name'], $dir_path.$headImg);
-               } else {
-                   $error = 1;
-                   $message = 'Vérifier l\'extension de votre image (extension autorisée : .png, .gif, .jpg, .jpeg)';
-               }
-           } else {
-               $error = 1;
-               $message = 'erreur lors de l\'upload de l\image article';
-           }
-       } else {
-           $error = 1;
-           $message = 'image trop volumineuse';
-       }   
-    }
-    
-    // Gestion des cas d'erreurs pour l'image de l'article
-    
-    if (isset($_FILES['image']) && $_FILES['image']['error'] != 0) {
-    
-        switch ($_FILES['image']['error']) {
-            case 1:
-                $error = 1;
-                $message = 'erreur lors de l\'envoi : fichier trop volumineux pour le serveur.';
-                break;
-    
-            case 2:
-                $error = 1;
-                $message = 'erreur lors de l\'envoi : fichier trop volumineux pour le site.';
-                break;
-    
-            case 3:
-                $error = 1;
-                $message = 'erreur lors de l\'envoi : fichier partiellement téléchargé<br /> Essayez à nouveau.';
-                break;
-    
-            case 4:
-                $error = 1;
-                $message = 'erreur lors de l\'envoi : Aucun fichier détecté.';
-                break;
-    
-            case 6:
-                $error = 1;
-                $message = 'erreur lors de l\'envoi : un dossier temporaire est manquant<br />Contactez nous !';
-                break;
-    
-            case 7:
-                $error = 1;
-                $message = 'erreur lors de l\'envoi : Echec lors de l\'écriture<br />Essayez à nouveau.';
-                break;
-    
-            case 8:
-                $error = 1;
-                $message = 'erreur lors de l\'envoi : erreur interne.';
-                break;
-        }
-    }*/
 
+            case 6:
+                $error = 1;
+                $message = 'erreur lors de l\'envoi : un dossier temporaire est manquant<br />Contactez nous !';
+                break;
+
+            case 7:
+                $error = 1;
+                $message = 'erreur lors de l\'envoi : Echec lors de l\'écriture<br />Essayez à nouveau.';
+                break;
+
+            case 8:
+                $error = 1;
+                $message = 'erreur lors de l\'envoi : erreur interne.';
+                break;
+        }
+    }
     // Création de l'objet article 
     $article = new Article();
-    if($mode =="add") {
+    if ($mode == "add") {
         $article->setArticle($title, $resume, $headImg, $content, $articleTag, $user);
         // Enregistrement en BDD
         $article->recordArticle();
-    }
-    else if($mode =="edit") {
+    } else if ($mode == "edit") {
         $article->setArticleWithId($id, $title, $resume, $headImg, $content, $articleTag, $user);
         $article->updateArticle();
-    } 
+    }
     $error = 0;
     $message = "Article enregistré avec succès";
-
 } else {
     $error = 1;
     $message = 'Veillez mettre un titre et un contenu';

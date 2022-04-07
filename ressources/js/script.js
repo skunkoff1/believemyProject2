@@ -49,6 +49,27 @@ if (deleteArticleBtn != null) {
     })
 }
 
+let addProjectBtn = document.getElementById('addProject');
+if (addProjectBtn != null) {
+    addProjectBtn.addEventListener("click", () => {
+        window.location.href = "index.php?page=adminProject&mode=add";
+    })
+}
+
+let modifyProjectBtn = document.getElementById('modifyProject');
+if (modifyProjectBtn != null) {
+    modifyProjectBtn.addEventListener("click", () => {
+        window.location.href = "index.php?page=adminEditProject";
+    })
+}
+
+let deleteProjectBtn = document.getElementById('deleteProject');
+if (deleteProjectBtn != null) {
+    deleteProjectBtn.addEventListener("click", () => {
+        window.location.href = "index.php?page=adminDeleteProject";
+    })
+}
+
 let footerText = document.getElementById('copyright');
 let date = new Date();
 footerText.innerHTML = "&copy; Didrich Damien aka Skunkoff " + date.getUTCFullYear();

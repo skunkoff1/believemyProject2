@@ -109,7 +109,7 @@ button:hover {
 }
 
 .header-title {
-    display:flex;
+    display: flex;
     flex-direction: column;
 }
 
@@ -129,7 +129,10 @@ button:hover {
     display: none;
 }
 
-#output {
+#output,
+#output1,
+#output2,
+#output3 {
     max-width: 350px;
     max-height: 350px;
 }

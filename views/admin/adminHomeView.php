@@ -14,10 +14,37 @@
 
     <header class="container-sm text-center">
         <h1 class="title">Bienvenue <?php if (isset($_SESSION['connect'])) { ?>
-            <?=$_SESSION['pseudo']?>
+            <?= $_SESSION['pseudo'] ?>
             <?php } ?></h1>
     </header>
+
     <section>
+        <div class="container-sm text-center">
+            <h1 class="section-title">Les 6 derniers projets</h1>
+        </div>
+        <div class="container-sm d-flex flex-wrap articles">
+            <?php
+            foreach ($projectArray as $project) { ?>
+            <article class="card border-primary">
+                <img class="card-image" src="ressources/images/<?= $project->getImg() ?>">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <h1 class="card-title"><?= $project->getTitle() ?></h1>
+                    <p class="card-text"><?= $project->getResume() ?></p>
+                </div>
+                <div class="card-footer d-flex justify-content-around align-items-baseline">
+                    <a href="index.php?page=displayProject&id=<?= $project->getId() ?>" class="btn btn-primary">Voir le
+                        projet</a>
+                    <p class="border border-primary border-2 rounded-1 author">Auteur : <?= $project->getUser() ?></p>
+                </div>
+            </article>
+            <?php } ?>
+        </div>
+    </section>
+
+    <section>
+        <div class="container-sm text-center">
+            <h1 class="section-title">Les 6 derniers articles du blog</h1>
+        </div>
         <div class="container-sm d-flex flex-wrap articles">
             <?php
             foreach ($articleArray as $article) { ?>
@@ -26,12 +53,12 @@
                 <div class="card-body d-flex flex-column justify-content-between">
                     <h1 class="card-title"><?= $article->getTitle() ?></h1>
                     <p class="card-text"><?= $article->getResume() ?></p>
-                    <p class="tag border border-2 rounded-1 border-warning"><?=$article->getTag()?></p>
+                    <p class="tag border border-2 rounded-1 border-warning"><?= $article->getTag() ?></p>
                 </div>
                 <div class="card-footer d-flex justify-content-around align-items-baseline">
                     <a href="index.php?page=displayArticle&id=<?= $article->getId() ?>" class="btn btn-primary">Lire
                         l'article</a>
-                    <p class="border border-primary border-2 rounded-1 author">Auteur : <?=$article->getUser()?></p>
+                    <p class="border border-primary border-2 rounded-1 author">Auteur : <?= $article->getUser() ?></p>
                 </div>
             </div>
             <?php } ?>
