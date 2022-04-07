@@ -108,7 +108,7 @@
             </div>
             <?php } ?>
             <div>
-                <button class="btn btn-outline-primary" type="button" id="loginBtn2">Se connecter</button>
+                <button class="btn btn-outline-secondary" type="button" id="loginBtn2">Se connecter</button>
             </div>
         </div>
     </section>

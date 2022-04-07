@@ -12,7 +12,7 @@
 <body>
     <?php include('components/header.php'); ?>
     <section>
-        <div class="form-container">
+        <div class="form-container container-sm">
             <h2>Formulaire de connexion</h2>
             <form action="index.php?page=login" method="post">
                 <label for="email">Votre email ou pseudo</label>
@@ -52,7 +52,7 @@
             </div>
             <?php } ?>
             <div>
-                <button class="btn btn-outline-primary" type="button" id="registerBtn">S'enregistrer</button>
+                <button class="btn btn-outline-secondary" type="button" id="registerBtn">S'enregistrer</button>
             </div>
         </div>
     </section>

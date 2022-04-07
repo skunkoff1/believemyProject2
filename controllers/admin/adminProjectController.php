@@ -9,7 +9,7 @@ $message = "";
 $error = "";
 $img = "";
 $mode = "add";
-$pageMode = "Formulaire d'ajout d'un projet";
+$pageMode = "Ceci est le formulaire d'ajout d'un projet";
 $id = 0;
 $project = null;
 if (isset($_GET['mode']) && $_GET['mode'] == 'add') {
@@ -18,7 +18,7 @@ if (isset($_GET['mode']) && $_GET['mode'] == 'add') {
     $mode = "edit";
     $id = $_GET['id'];
     $project = Project::getProjectById($_GET['id']);
-    $pageMode = "Formulaire de modification d'un article";
+    $pageMode = "Ceci est le formulaire de modification d'un article";
 }
 
 //Récupération du user en session
@@ -139,7 +139,7 @@ if (!empty($_POST['title']) && !empty($_POST['article']) && !empty($_POST['resum
     $message = "Projet enregistré avec succès";
 } else {
     $error = 1;
-    $message = 'Veillez mettre un titre, un résumé et un contenu';
+    $message = 'Veuillez mettre un titre, un résumé et un contenu';
 }
 
 require('views/admin/adminProjectView.php');

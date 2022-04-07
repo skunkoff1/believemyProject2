@@ -18,7 +18,7 @@
 
     <header class="container-sm">
         <div class="header-title">
-            <h2>Bienvenue dans la section de gestion des articles</h2>
+            <h2 class="text-dark text-center">Bienvenue dans la section de gestion des articles</h2>
         </div>
         <div class="buttonDiv">
             <button type="button" class="btn btn-primary" id="addArticle">Ajouter un article</button>
@@ -27,6 +27,9 @@
         </div>
     </header>
     <section>
+        <div class="container-sm">
+            <h2 class="text-center"><?= $pageMode ?></h2>
+        </div>
         <div class="container-sm">
             <?php if ($error == 0 && $message != '') { ?>
             <div class="alert success">
@@ -38,9 +41,6 @@
                 <p><?= $message ?></p>
             </div>
             <?php } ?>
-        </div>
-        <div class="container-sm">
-            <h2><?= $pageMode ?></h2>
         </div>
         <div class="container-sm tiny">
             <form method="post"
@@ -78,8 +78,8 @@
     tinymce.init({
         selector: 'textarea',
         paste_data_images: true,
-        plugins: 'a11ychecker advcode image casechange export formatpainter image linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
-        toolbar: 'a11ycheck image addcomment showcomments casechange checklist code export formatpainter pageembed permanentpen table image',
+        plugins: 'a11ychecker advcode image casechange export formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+        toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter permanentpen table image',
         toolbar_mode: 'floating',
         file_picker_callback: function(callback, value, meta) {
             if (meta.filetype == 'image') {

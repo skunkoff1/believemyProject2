@@ -10,7 +10,7 @@ $message = '';
 $error = '';
 $headImg = "";
 $mode = "add";
-$pageMode = "Formulaire d'ajout d'un article";
+$pageMode = "Ceci est le formulaire d'ajout d'articles";
 $id = 0;
 $article = null;
 if (isset($_GET['mode']) && $_GET['mode'] == 'add') {
@@ -19,7 +19,7 @@ if (isset($_GET['mode']) && $_GET['mode'] == 'add') {
     $mode = "edit";
     $id = $_GET['id'];
     $article = Article::getArticleById($_GET['id']);
-    $pageMode = "Formulaire de modification d'un article";
+    $pageMode = "Ceci est le formulaire de modification d'un article";
 }
 
 //Récupération du user en session
@@ -149,7 +149,7 @@ if (!empty($_POST['title']) && !empty($_POST['article'])) {
     $message = "Article enregistré avec succès";
 } else {
     $error = 1;
-    $message = 'Veillez mettre un titre et un contenu';
+    $message = 'Veuillez mettre un titre et un contenu';
 }
 
 

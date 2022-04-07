@@ -17,7 +17,7 @@
 
     <header class="container-sm">
         <div class="header-title">
-            <h2>Bienvenue dans la section de gestion des Projets</h2>
+            <h2 class="text-dark text-center">Bienvenue dans la section de gestion des Projets</h2>
         </div>
         <div class="buttonDiv">
             <button type="button" class="btn btn-primary" id="addProject">Ajouter un projet</button>
@@ -26,6 +26,9 @@
         </div>
     </header>
     <section>
+        <div class="container-sm">
+            <h2 class="text-center"><?= $pageMode ?></h2>
+        </div>
         <div class="container-sm">
             <?php if ($error == 0 && $message != '') { ?>
             <div class="alert success">
@@ -37,9 +40,6 @@
                 <p><?= $message ?></p>
             </div>
             <?php } ?>
-        </div>
-        <div class="container-sm">
-            <h2><?= $pageMode ?></h2>
         </div>
         <div class="container-sm tiny">
             <form method="post"

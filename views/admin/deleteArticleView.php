@@ -31,7 +31,7 @@
             <?php } ?></h1>
     </div>
     <section>
-        <div class="container d-flex flex-wrap articles">
+        <div class="container d-flex flex-wrap articles justify-content-center">
             <?php
             if ($mode == "confirmDelete") { ?>
             <div class="card" style="width:30rem;">

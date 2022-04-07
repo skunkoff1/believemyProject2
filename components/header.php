@@ -16,7 +16,7 @@
         <?php } ?>
 
         <?php if (isset($_SESSION['connect'])) { ?>
-        <li><a href="index.php?page=adminArticle" class="nav-link px-12 link-light">Gestion du Blog</a>
+        <li><a href="index.php?page=adminArticle" class="nav-link px-12 link-light">Gestion des articles du Blog</a>
         </li>
         <?php } else { ?>
         <li><a href="index.php?page=allArticles" class="nav-link px-12 link-light">Tous les billets de Blog</a></li>
