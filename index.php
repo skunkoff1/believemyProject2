@@ -32,7 +32,11 @@ try {
       displayArticle();
     } else if ($_GET['page'] == 'displayProject') {
       displayProject();
-    }  else if ($_GET['page'] == 'error') {
+    } else if ($_GET['page'] == 'allArticles') {
+      displayAllArticles();
+    } else if ($_GET['page'] == 'allProjects') {
+      displayAllProjects();
+    } else if ($_GET['page'] == 'error') {
       error();
     } else {
       throw new Exception("Cette page n'existe pas ou a été supprimée.");

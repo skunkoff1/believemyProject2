@@ -118,6 +118,8 @@ class Article
     }
 
     // Méthodes 
+
+    // Get tous les articles (ou les 6 premiers pour les pages home et admin/home)
     public static function getArticles($mode)
     {
         $articleArray = array();

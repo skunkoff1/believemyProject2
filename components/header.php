@@ -11,21 +11,21 @@
         <?php if (isset($_SESSION['connect'])) { ?>
         <li><a href="index.php?page=adminProject" class="nav-link px-12 link-light">Gestion des Projets</a></li>
         <?php } else { ?>
-        <li><a href="#" class="nav-link px-12 link-light">Projets</a></li>
+        <li><a href="index.php?page=allProjects" class="nav-link px-12 link-light">Tous les Projets</a></li>
         <?php } ?>
 
         <?php if (isset($_SESSION['connect'])) { ?>
         <li><a href="index.php?page=adminArticle" class="nav-link px-12 link-light">Gestion du Blog</a>
         </li>
         <?php } else { ?>
-        <li><a href="#" class="nav-link px-12 link-light">Blog</a></li>
+        <li><a href="index.php?page=allArticles" class="nav-link px-12 link-light">Tous les billets de Blog</a></li>
         <?php } ?>
     </ul>
 
     <div class="d-flex justify-content-end col-md-3 text-end">
         <?php if (isset($_SESSION['connect'])) { ?>
         <div>
-            <p>Bienvenue <?=$_SESSION['pseudo']?></p>
+            <p>Bienvenue <?= $_SESSION['pseudo'] ?></p>
         </div>
         <?php } ?>
         <?php if (isset($_SESSION['connect'])) { ?>

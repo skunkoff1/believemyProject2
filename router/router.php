@@ -1,59 +1,81 @@
-<?php 
+<?php
 
-  function home() {
-      require('controllers/indexController.php');
-  }
+function home()
+{
+  require('controllers/indexController.php');
+}
 
-  function adminHome() {
-    require('controllers/admin/adminHomeController.php');
-  }
+function adminHome()
+{
+  require('controllers/admin/adminHomeController.php');
+}
 
-  function adminArticle() {
-    require('controllers/admin/adminArticleController.php');
-  }  
-  
-  function adminEditArticle() {
-    require('controllers/admin/editArticleController.php');
-  }
+function adminArticle()
+{
+  require('controllers/admin/adminArticleController.php');
+}
 
-  function adminDeleteArticle() {
-    require('controllers/admin/deleteArticleController.php');
-  }  
+function adminEditArticle()
+{
+  require('controllers/admin/editArticleController.php');
+}
 
-  function adminProject() {
-    require('controllers/admin/adminProjectController.php');
-  }  
-  
-  function adminEditProject() {
-    require('controllers/admin/editProjectController.php');
-  }
+function adminDeleteArticle()
+{
+  require('controllers/admin/deleteArticleController.php');
+}
 
-  function adminDeleteProject() {
-    require('controllers/admin/deleteProjectController.php');
-  }  
+function adminProject()
+{
+  require('controllers/admin/adminProjectController.php');
+}
 
-  function login() {
-    require('controllers/loginController.php');
-  }
+function adminEditProject()
+{
+  require('controllers/admin/editProjectController.php');
+}
 
-  function register() {
-    require('controllers/registerController.php');
-  }
+function adminDeleteProject()
+{
+  require('controllers/admin/deleteProjectController.php');
+}
 
-  function logout() {
-    require('controllers/logout.php');
-  }
+function login()
+{
+  require('controllers/loginController.php');
+}
 
-  function displayArticle() {
-    require('controllers/displayArticleController.php');
-  }
+function register()
+{
+  require('controllers/registerController.php');
+}
 
-  function displayProject() {
-    require('controllers/displayProjectController.php');
-  }
+function logout()
+{
+  require('controllers/logout.php');
+}
 
-  function error() {
-    require('controllers/errorController.php');
-  }
+function displayArticle()
+{
+  require('controllers/displayArticleController.php');
+}
 
-  
+function displayProject()
+{
+  require('controllers/displayProjectController.php');
+}
+
+function displayAllArticles()
+{
+  require('controllers/displayAllArticlesController.php');
+}
+
+function displayAllProjects()
+{
+  require('controllers/displayAllProjectsController.php');
+}
+
+function error()
+{
+  require('controllers/errorController.php');
+}
