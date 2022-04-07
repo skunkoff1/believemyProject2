@@ -31,6 +31,9 @@ nav {
     background-color: rgb(77, 76, 76);
     padding: 0 50px;
     color: white;
+    .navlogo {
+        width: 50px;
+    }
     ul {
         li {
             font-size: 1.6rem;
@@ -140,6 +143,10 @@ button:hover {
 label {
     margin-top: 15px;
     color: blue;
+}
+
+#tagForm {
+    display: none;
 }
 
 

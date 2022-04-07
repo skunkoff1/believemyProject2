@@ -3,13 +3,14 @@
 
 <head>
     <meta charset="utf-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="ressources/css/style.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="ressources/logo/final16px.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DIDRICH Damien | PHP Blog/Portfolio</title>
     <script src="https://cdn.tiny.cloud/1/6vyldap08tf4dft2363wjdktfdg6vuyfn8fvg1ubc40e0emd/tinymce/5/tinymce.min.js"
         referrerpolicy="origin"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>Bienvenue sur mon blog</title>
-    <link rel="stylesheet" href="ressources/css/style.css">
 </head>
 
 <body>
@@ -58,7 +59,8 @@
                 <textarea id="mytextarea"
                     name="article"><?php if ($article != null) { ?><?= $article->getContent() ?><?php } ?></textarea>
                 <input name="image" type="file" id="upload">
-                <label for="tagSelect">Chosir la catégorie de l'article</label>
+                <label for="tagSelect">Choisir la catégorie de l'article</label>
+
                 <select name="tagSelect">
                     <?php
                     foreach ($tagArray as $tag) { ?>

@@ -70,6 +70,15 @@ if (deleteProjectBtn != null) {
     })
 }
 
+let addTagBtn = document.getElementById('addTag');
+if (addTagBtn != null) {
+    addTagBtn.addEventListener("click", () => {
+        let form = document.getElementById("tagForm");
+        form.style.display = "block";
+    })
+}
+
+
 let footerText = document.getElementById('copyright');
 let date = new Date();
 footerText.innerHTML = "&copy; Didrich Damien aka Skunkoff " + date.getUTCFullYear();

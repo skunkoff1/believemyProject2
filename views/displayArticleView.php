@@ -3,10 +3,10 @@
 
 <head>
     <meta charset="utf-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Bienvenue sur mon blog</title>
     <link rel="stylesheet" href="ressources/css/style.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="ressources/logo/final16px.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DIDRICH Damien | PHP Blog/Portfolio</title>
 </head>
 
 <body>
@@ -14,11 +14,11 @@
     <section>
         <article class="container-sm articles d-flex justify-content-between">
             <div>
-                <img class="article-img" src="/ressources/images/<?=$article->getHeadImg() ?>">
+                <img class="article-img" src="/ressources/images/<?= $article->getHeadImg() ?>">
             </div>
             <div>
                 <h1 class="title"><?= $article->getTitle() ?></h1>
-                <p classe="article-content"><?=$article->getContent() ?></p>
+                <p classe="article-content"><?= $article->getContent() ?></p>
             </div>
         </article>
     </section>
