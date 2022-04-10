@@ -32,7 +32,7 @@
                     <p class="card-text"><?= $project->getResume() ?></p>
                 </div>
                 <div class="card-footer d-flex justify-content-around align-items-baseline">
-                    <a href="index.php?page=displayArticle&id=<?= $project->getId() ?>" class="btn btn-primary">Lire
+                    <a href="index.php?page=displayProject&id=<?= $project->getId() ?>" class="btn btn-primary">Lire
                         l'article</a>
                     <p class="border border-primary border-2 rounded-1 author">Auteur : <?= $project->getUser() ?></p>
                 </div>
